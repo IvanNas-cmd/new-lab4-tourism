@@ -8,7 +8,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -27,6 +26,9 @@ jobs:
       run: make distcheck
 
     - name: Upload coverage reports to Codecov
-    uses: codecov/codecov-action@v5
-    with:
-      token: ${{ secrets.CODECOV_TOKEN }}
+      # ВАЖНО: uses должен быть на том же уровне, что и name
+      uses: codecov/codecov-action@v5
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        # Можно добавить путь к отчету, если make check генерирует его в файл
+        # files: ./coverage.xml
